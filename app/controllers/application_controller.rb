@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   around_filter :catch_exceptions
 
-  default_subdomainbox ''
+  default_subdomainbox 'app'
 
   class DocumentNotFound < StandardError
   end
