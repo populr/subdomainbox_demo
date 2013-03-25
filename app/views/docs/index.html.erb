@@ -1,0 +1,15 @@
+<% content_for :page_title, 'Documents' %>
+<% content_for :main_menu do %>
+  <li><%= button_to 'New Doc', docs_path, :class => 'btn' %></li>
+<% end %>
+
+<h3>Owned</h3>
+<ul class="unstyled">
+  <%= render @owned_docs, :owner => true %>
+</ul>
+
+<h3>Collaborating</h3>
+<ul class="unstyled">
+  <%= render @editor_docs, :owner => false %>
+</ul>
+

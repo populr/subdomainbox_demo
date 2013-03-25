@@ -1,0 +1,18 @@
+<li>
+  <ul class="unstyled doc">
+    <li class="doc-title">
+      <%= link_to doc.title, edit_doc_path(doc) %>
+    </li>
+    <li>
+      <%= collaborator_emails(current_user, doc) %>
+    </li>
+    <% if owner %>
+    <li>
+      <%= link_to('add collaborator', new_doc_doc_privilege_path(:doc_id => doc.id), :class => 'muted') %>
+    </li>
+    <li class="delete">
+      <%= link_to('×', doc_path(doc), :method => 'delete', :confirm => "Really delete '#{doc.title}'") %>
+    </li>
+    <% end %>
+  </ul>
+</li>

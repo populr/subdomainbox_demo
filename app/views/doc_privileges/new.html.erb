@@ -1,0 +1,15 @@
+<% content_for :page_title, "Add a Collaborator to '#{@doc.title}'" %>
+<% content_for :main_menu do %>
+  <li><%= link_to 'Index', docs_path %></li>
+  <li><%= link_to 'Show', doc_path(@doc) %></li>
+<% end %>
+
+<%= form_for(@doc_privilege, :url => doc_doc_privileges_path(:doc_id => @doc.id)) do |f| -%>
+<fieldset>
+  <%= f.text_field :collaborator_email, :placeholder => 'Email Address of Another User' %>
+</fieldset>
+
+<fieldset>
+  <button type="submit" class="btn">Add Collaborator</button>
+</fieldset>
+<% end -%>

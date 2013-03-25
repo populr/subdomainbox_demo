@@ -1,0 +1,8 @@
+production:
+  secret: itRdZt059EzO4QBfEiwNHLznGjEPmU28Q1hIVTHnF1bWXx19oD8rvoQLsxg8Z3w
+
+development:
+  secret: itRdZt059EzO4QBfEiwNHLznGjEPmU28Q1hIVTHnF1bWXx19oD8rvoQLsxg8Z3w
+
+test:
+  secret: itRdZt059EzO4QBfEiwNHLznGjEPmU28Q1hIVTHnF1bWXx19oD8rvoQLsxg8Z3w

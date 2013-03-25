@@ -1,0 +1,40 @@
+@import "twitter/bootstrap";
+
+body {
+  padding-top: 80px;
+  padding-bottom: 40px;
+}
+
+.hero-unit h1 {
+  margin-bottom: 20px;
+  font-size: 36px;
+  line-height: 1;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.edit_doc {
+  input, textarea {
+    width: 550px;
+  }
+}
+
+ul.doc li {
+  display: inline-block;
+
+  &.doc-title {
+    font-size: 1.4em;
+    margin-right: 15px;
+  }
+
+  &.delete {
+    float: right;
+    font-size: 1.4em;
+    font-weight: bold;
+    a, a:active, a:visited {
+      color: @red;
+    }
+  }
+}

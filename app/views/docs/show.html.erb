@@ -1,0 +1,7 @@
+<% content_for :page_title, @doc.title %>
+<% content_for :main_menu do %>
+  <li><%= link_to 'Index', docs_path %></li>
+  <li><%= link_to 'Edit', edit_doc_path(@doc) %></li>
+<% end %>
+
+<div><%= raw @doc.body %></div>
