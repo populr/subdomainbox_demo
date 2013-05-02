@@ -26,7 +26,44 @@ describe Doc do
     Doc.new.should respond_to(:body=)
   end
 
-  describe "#title" do
+  it "should respond to #subdomain" do
+    Doc.new.should respond_to(:subdomain)
+  end
+
+  it "should respond to #subdomain=" do
+    Doc.new.should respond_to(:subdomain=)
+  end
+
+  describe "subdomain" do
+    it "should default to a non-empty string" do
+      doc = Doc.new
+      doc.save!
+      doc.subdomain.should_not be_blank
+    end
+
+    context "when saved with an empty subdomain" do
+      it "should default to a non-empty string" do
+        doc = Factory(:doc)
+        doc.subdomain = ''
+        doc.save!
+        doc.subdomain.should_not be_blank
+      end
+    end
+
+    it "should be unique" do
+      doc = Factory(:doc, :subdomain => 'hello')
+      doc2 = Factory.build(:doc, :subdomain => 'hello')
+      doc2.should_not be_valid
+    end
+
+    it "should contain only alphanumeric characters" do
+      doc = Factory.build(:doc, :subdomain => 'hello.world')
+      doc.should_not be_valid
+    end
+  end
+
+
+  describe "title" do
     context "when created without a title" do
       it "should default to 'Untitled'" do
         doc = Doc.new

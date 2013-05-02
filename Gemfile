@@ -9,6 +9,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'twitter'
 gem 'subdomainbox'
+gem 'uuidtools'
 
 
 # Gems used only for assets and not required

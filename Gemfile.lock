@@ -260,3 +260,4 @@ DEPENDENCIES
   therubyracer
   twitter
   uglifier
+  uuidtools

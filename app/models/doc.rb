@@ -1,5 +1,5 @@
 class Doc < ActiveRecord::Base
-  attr_accessible :body, :title
+  attr_accessible :body, :title, :subdomain
   attr_accessor :privilege
 
   has_many :doc_privileges
@@ -15,6 +15,10 @@ class Doc < ActiveRecord::Base
            :conditions => ['privilege=? OR privilege=?', 'o', 'w']
 
   before_create :assign_default_title
+  before_validation :fix_subdomain
+
+  validates_uniqueness_of :subdomain
+  validates_format_of :subdomain, :with => /\A[a-zA-Z0-9]+\z/, :message => 'may only include letters and numbers'
 
   def as_json(options={})
     hash = super(options)
@@ -55,6 +59,10 @@ class Doc < ActiveRecord::Base
 
   def assign_default_title
     self.title = 'Untitled' if title.blank?
+  end
+
+  def fix_subdomain
+    self.subdomain = SecureRandom.base64(10).gsub(/[^a-zA-Z0-9]/, '') if subdomain.blank?
   end
 
 end

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= raw @doc.title %></title>
+  <%= stylesheet_link_tag "published/application", :media => "all" %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+  <div class="container">
+    <%= yield %>
+  </div>
+
+  <div class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="navbar-inner">
+      <div class="star">
+        <%= link_to "★", "/", :method => "post" %>
+      </div>
+    </div>
+  </div>
+</body>
