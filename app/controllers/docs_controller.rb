@@ -2,7 +2,7 @@ class DocsController < ApplicationController
 
   subdomainbox 'edit-%{id}', :only => [:edit, :update]
   subdomainbox 'preview-%{id}', :only => :show
-  remove_default_subdomainbox :only => :star
+  subdomainbox 'star', :only => :star
 
   before_filter :require_user
   before_filter :find_resources, :only => :index

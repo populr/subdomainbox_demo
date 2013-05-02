@@ -2,13 +2,13 @@ SubdomainboxDemo::Application.routes.draw do
 
 
   constraints lambda{ |req| !(req.host =~ /^subdomainbox\.com$/ ||
-                         req.host =~ /^(admin|account|app|docs|edit|preview|trash)(-[^.]+)?\.subdomainbox\.com$/ ||
+                         req.host =~ /^(admin|account|app|docs|edit|preview|star|trash)(-[^.]+)?\.subdomainbox\.com$/ ||
                          req.host =~ /^www\.subdomainbox\.com$/ ||
                          req.host =~ /^talkdemo\.com$/ ||
-                         req.host =~ /^(admin|account|app|docs|edit|preview|trash)(-[^.]+)?\.talkdemo\.com$/ ||
+                         req.host =~ /^(admin|account|app|docs|edit|preview|star|trash)(-[^.]+)?\.talkdemo\.com$/ ||
                          req.host =~ /^www\.talkdemo\.com$/ ||
                          req.host =~ /^lvh\.me$/ ||
-                         req.host =~ /^(admin|account|app|docs|edit|preview|trash)(-[^.]+)?\.lvh\.me$/ ||
+                         req.host =~ /^(admin|account|app|docs|edit|preview|star|trash)(-[^.]+)?\.lvh\.me$/ ||
                          req.host =~ /^localhost$/ ||
                          req.host =~ /.dev$/ ||
                          req.host =~ /localtunnel.com$/ ||
@@ -30,5 +30,6 @@ SubdomainboxDemo::Application.routes.draw do
   devise_for :users, :path => 'users', :controllers => { :sessions => 'sessions' }
 
   match '/docs' => 'pages#home', :as => :user_root
+  match 'starframe/:doc_id' => 'pages#starframe', :via => :get
   root :to => 'pages#home'
 end

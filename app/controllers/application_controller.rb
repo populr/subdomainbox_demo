@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   # collisions between helper methods
   clear_helpers
 
-  helper_method :published_doc_url, :star_doc_url
+  helper_method :published_doc_url, :star_doc_url, :starframe_src_url
 
   class DocumentNotFound < StandardError
   end
@@ -18,9 +18,14 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def starframe_src_url(doc)
+    port = Rails.env.development? ? ':3000' : ''
+    request.protocol + 'star.' + request.domain + port + "/starframe/#{doc.id}"
+  end
+
   def star_doc_url(doc)
     port = Rails.env.development? ? ':3000' : ''
-    request.protocol + request.domain + port + "/docs/#{doc.id}/star"
+    request.protocol + 'star.' + request.domain + port + "/docs/#{doc.id}/star"
   end
 
   def published_doc_url(doc)
