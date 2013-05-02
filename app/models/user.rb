@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
 
+  has_many :stars
   has_many :doc_privileges
   has_many :docs, :through => :doc_privileges
   has_many :owned_docs,
@@ -20,5 +21,11 @@ class User < ActiveRecord::Base
            :source => :doc,
            :through => :doc_privileges,
            :conditions => ['privilege=?', 'w']
+
+  def star!(doc)
+    star = stars.new
+    star.doc = doc
+    star.save
+  end
 
 end

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= raw @doc.title %></title>
+  <%= stylesheet_link_tag    "published/application", :media => "all" %>
+  <%= javascript_include_tag "published/application" %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+  <div class="container">
+    <%= yield %>
+  </div>
+
+  <div class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="navbar-inner">
+      <%= button_to "★", star_doc_url(@doc), :class => "btn btn-link btn-star" %>
+    </div>
+  </div>
+</body>

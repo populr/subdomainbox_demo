@@ -2,14 +2,20 @@ class DocsController < ApplicationController
 
   subdomainbox 'edit-%{id}', :only => [:edit, :update]
   subdomainbox 'preview-%{id}', :only => :show
+  remove_default_subdomainbox :only => :star
 
   before_filter :require_user
   before_filter :find_resources, :only => :index
   before_filter :new_resource, :only => [:new, :create]
-  before_filter :find_resource, :except => [:index, :new, :create]
+  before_filter :find_resource, :except => [:index, :new, :create, :star]
 
   respond_to :html, :json
 
+  def star
+    doc = Doc.find(params[:id])
+    current_user.star!(doc)
+    redirect_to(published_doc_url(doc))
+  end
 
   def create
     @doc.save

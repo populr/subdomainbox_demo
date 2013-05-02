@@ -1,19 +1,23 @@
 <% content_for :page_title, 'Edit your doc' %>
 <% content_for :main_menu do %>
   <li><%= link_to 'Index', docs_path %></li>
-  <li><%= link_to 'Show', doc_path(@doc) %></li>
+  <li><%= link_to 'Preview', doc_path(@doc) %></li>
+  <li><%= link_to 'View Published', published_doc_url(@doc) %></li>
 <% end %>
 
 
 <%= form_for @doc do |f| -%>
 <fieldset>
+  <label for="doc_subdomain">Subdomain</label>
+  <%= f.text_field :subdomain %>
+
   <label for="doc_title">Title</label>
   <%= f.text_field :title %>
 
   <label for="doc_body">Body</label>
   <%= f.text_area :body, :rows => 15 %>
 
-  <h4>CSRF token available via:</h4>
+  <h4>CSRF token available via the following (within the app, not on the published page):</h4>
   <p>$("meta[name='csrf-token']").attr('content')</p>
 </fieldset>
 

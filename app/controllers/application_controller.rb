@@ -4,6 +4,12 @@ class ApplicationController < ActionController::Base
 
   default_subdomainbox 'app'
 
+  # By default, Rails includes all helper files, which causes namespace
+  # collisions between helper methods
+  clear_helpers
+
+  helper_method :published_doc_url, :star_doc_url
+
   class DocumentNotFound < StandardError
   end
 
@@ -11,6 +17,16 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def star_doc_url(doc)
+    port = Rails.env.development? ? ':3000' : ''
+    request.protocol + request.domain + port + "/docs/#{doc.id}/star"
+  end
+
+  def published_doc_url(doc)
+    port = Rails.env.development? ? ':3000' : ''
+    request.protocol + doc.subdomain + '.' + request.domain + port
+  end
 
   def require_user
     return if user_signed_in?
