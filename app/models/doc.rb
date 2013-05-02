@@ -2,6 +2,7 @@ class Doc < ActiveRecord::Base
   attr_accessible :body, :title, :subdomain
   attr_accessor :privilege
 
+  has_many :stars
   has_many :doc_privileges
   has_many :users, :through => :doc_privileges
   has_many :owners,

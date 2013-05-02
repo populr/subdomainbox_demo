@@ -18,7 +18,7 @@ group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'therubyracer', :require => 'v8'
-  gem 'less-rails-bootstrap', '2.0.13'
+  gem 'less-rails-bootstrap'
 end
 
 group :development, :test, :staging do

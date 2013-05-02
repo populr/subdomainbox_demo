@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130502154149) do
+ActiveRecord::Schema.define(:version => 20130502170031) do
 
   create_table "doc_privileges", :force => true do |t|
     t.integer  "doc_id"
@@ -27,6 +27,13 @@ ActiveRecord::Schema.define(:version => 20130502154149) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "subdomain"
+  end
+
+  create_table "stars", :force => true do |t|
+    t.integer  "doc_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

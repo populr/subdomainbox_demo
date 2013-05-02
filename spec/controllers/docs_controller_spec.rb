@@ -161,6 +161,27 @@ describe DocsController do
     end
   end
 
+  describe "POST star" do
+    before(:each) do
+      @user = Factory(:user)
+      @doc = Factory(:doc)
+      @doc.reload
+
+      sign_in @user
+    end
+
+    it "should star the doc on behalf of the user" do
+      User.any_instance.should_receive(:star!)
+      post :star, :id => @doc.id
+    end
+
+    it "should redirect back to the published doc" do
+      new_location = controller.send(:published_doc_url, @doc)
+      post :star, :id => @doc.id
+      response.should redirect_to(new_location)
+    end
+  end
+
   describe "POST create" do
     before(:each) do
       @request.env['HTTP_ACCEPT'] = 'application/json'

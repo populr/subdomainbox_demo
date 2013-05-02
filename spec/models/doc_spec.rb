@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe Doc do
 
+  it "should respond to #stars" do
+    Doc.new.should respond_to(:stars)
+  end
+
   it "should respond to #privilege" do
     Doc.new.should respond_to(:privilege)
   end

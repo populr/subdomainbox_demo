@@ -41,4 +41,29 @@ describe User do
     end
   end
 
+  it "should respond to #stars" do
+    User.new.should respond_to(:stars)
+  end
+
+  describe "#star!" do
+    it "should limit to one star per user per doc" do
+      user = Factory(:user)
+      doc = Factory(:doc)
+      user.star!(doc)
+      user.star!(doc)
+      doc.should have(1).star
+      user.reload
+      user.should have(1).star
+    end
+
+    it "should allow the user to star more than one doc" do
+      user = Factory(:user)
+      doc = Factory(:doc)
+      doc2 = Factory(:doc)
+      user.star!(doc)
+      user.star!(doc2)
+      user.should have(2).stars
+    end
+  end
+
 end

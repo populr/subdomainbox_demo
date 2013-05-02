@@ -21,6 +21,9 @@ SubdomainboxDemo::Application.routes.draw do
 
 
   resources :docs do
+    member do
+      post :star
+    end
     resources :doc_privileges, :only => [:new, :create, :destroy]
   end
 

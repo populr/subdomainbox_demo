@@ -1,7 +1,16 @@
 <li>
   <ul class="unstyled doc">
     <li class="doc-title">
-      <%= link_to doc.title, edit_doc_path(doc) %>
+      <%= doc.title %>
+    </li>
+    <li>
+      <%= link_to 'Edit', edit_doc_path(doc) %>
+    </li>
+    <li>
+      <%= link_to 'View Published', published_doc_url(doc) %>
+    </li>
+    <li class="star-tally">
+      <%= pluralize(doc.stars.count, 'star') %>
     </li>
     <li>
       <%= collaborator_emails(current_user, doc) %>
