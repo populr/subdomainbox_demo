@@ -1,6 +1,5 @@
 class PublishedDocsController < ApplicationController
 
-  remove_default_subdomainbox
   before_filter :find_resource
 
   private

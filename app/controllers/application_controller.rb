@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   around_filter :catch_exceptions
 
-  default_subdomainbox 'app'
 
   # By default, Rails includes all helper files, which causes namespace
   # collisions between helper methods
